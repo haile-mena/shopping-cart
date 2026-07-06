@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title> CART </title>
+    <link href="/static/style.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+    <header>
+        <ul>
+            <li><a href="{{ url_for('furniture') }}">Furniture</a></li>
+            <li><a href="{{ url_for('toys') }}">Toys</a></li>
+            <li><a href="{{ url_for('travel') }}">Travel</a></li>
+            <li><a href="{{ url_for('food') }}">Food Appliances</a></li>
+        </ul>
+
+        <div class="search-container">
+            <form action="/shopping" method="POST">
+                <input type="text" placeholder="Search.." name="search">
+                <button type="submit">Submit</button>
+            </form>
+        </div>
+        <ul id="loginBtn">
+            <li><a href="{{ url_for('cart') }}">Cart</a></li>
+            {% if session['user'] %}
+            <li><a href="{{ url_for('logout') }}">Logout</a></li>
+            {% else %}
+            <li><a href="{{ url_for('login') }}">Sign in</a></li>
+            {% endif %}
+        </ul>
+    </header>
+    <h1>Shopping Cart</h1>
+    {% if session['user'] %}
+    <h1> Welcome, {{ session['user'] }}! </h1>
+    <div class="box">
+            {% for c in range(cart|length) %}
+            <form action="/remove" method="post">
+                <p> {{ cart[c] }} <span class="price">${{ price[c] }}</span> <button name="remove" value="{{ cart[c] }}" class="delete">Remove</button> </p>
+            </form>
+            
+        {% endfor %}
+    </div>
+        <hr>
+        <p>Total <span class="price" style="color:black"><b>${{ sum }}</b></span></p>
+        {% else %}
+        <h2> Welcome, Please Sign In/Up to add to Cart</h2>
+        {% endif %}
+        <br>
+        <form action="/checkout" method="post">
+            <button type="submit" class="checkout-btn">Checkout</button>
+        </form>
+        <form action="/reset" method="post">
+            <button type="submit" class="clear-btn">Clear Cart</button>
+        </form>
+
+</body>
+
+</html>

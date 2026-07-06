@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link href="/static/style.css" rel="stylesheet" type="text/css"/>
+        <title>Cat Store</title>
+    </head>
+    <body>
+        <header>
+            <ul>
+                <li><a href="{{ url_for('furniture') }}">Furniture</a></li>
+                <li><a href="{{ url_for('toys') }}">Toys</a></li>
+                <li><a href="{{ url_for('travel') }}">Travel</a></li>
+                <li><a href="{{ url_for('food') }}">Food Appliances</a></li>
+            </ul>
+    
+            <div class="search-container">
+                <form action="/shopping" method="POST">
+                    <input type="text" placeholder="Search.." name="search">
+                    <button type="submit">Submit</button>
+                </form>
+            </div>
+            <ul id="loginBtn">
+                <li><a href="{{ url_for('cart') }}">Cart</a></li>
+                {% if session['user'] %}
+                <div class="dropdown">
+                    <button class="username">{{ session['user'] }}</button>
+                    <div class="dropdown-content">
+                        <a href="{{ url_for('logout') }}">Order History</a>
+                        <a href="{{ url_for('logout') }}">Logout</a>
+                    </div>
+                </div>
+                {% else %}
+                <div class="dropdown">
+                    <button class="join">Join</button>
+                    <div class="dropdown-content">
+                        <a href="{{ url_for('login') }}">Sign In</a>
+                        <a href="{{ url_for('signup') }}">Sign Up</a>
+                    </div>
+                </div>
+                {% endif %}
+            </ul>
+        </header>
+        {% for row in rows %}
+        <div class="gallery">
+            <a target="_blank" href="/static/assets/{{ row['image'] }}">
+             <img src="/static/assets/{{ row['image'] }}" alt="{{ row['image'] }}" > 
+            </a>
+             <div class="desc">{{ row['pname'] }} ${{ row['price'] }}</div>
+             {% if session['user'] %}
+             <form action="/cart" method="POST">
+                <button type="submit" class = "add-button" >Add to Cart</button>
+            </form>
+             {% else %}
+             <div class="desc">{{ row['pname'] }} ${{ row['price'] }}</div>
+             <button type="submit" class = "disabled" >Please Log In First</button>
+             {% endif %}
+            
+        </div>
+        {% endfor %}
+
+    </body>
+</html>

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title> CART </title>
+    <link href="/static/style.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+    <header>
+        <ul>
+            <li><a href="{{ url_for('furniture') }}">Furniture</a></li>
+            <li><a href="{{ url_for('toys') }}">Toys</a></li>
+            <li><a href="{{ url_for('travel') }}">Travel</a></li>
+            <li><a href="{{ url_for('food') }}">Food Appliances</a></li>
+        </ul>
+
+        <div class="search-container">
+            <form action="/shopping" method="POST">
+                <input type="text" placeholder="Search.." name="search">
+                <button type="submit">Submit</button>
+            </form>
+        </div>
+        <ul id="loginBtn">
+            <li><a href="{{ url_for('cart') }}">Cart</a></li>
+            {% if session['user'] %}
+            <li><a href="{{ url_for('logout') }}">Logout</a></li>
+            {% else %}
+            <li><a href="{{ url_for('login') }}">Sign in</a></li>
+            {% endif %}
+        </ul>
+    </header>
+    <h1>Order History</h1>
+    <h1> Welcome, {{ session['user'] }}! </h1>
+    <div class="box">
+        {% for c in range(orderHistory|length) %}
+        <p> {{ orderHistory[c] }} <span class="price">${{ priceHistory[c] }}</span> 
+            
+        {% endfor %}
+    </div>
+       
+
+</body>
+
+</html>

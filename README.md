@@ -1,62 +1,84 @@
-## Description
-This homework will have you develop a web store application.  **This is an individual** assignment; you may discuss general Python/SQL techniques with other students, but all code that you write must be your own! You are expected to implement the following "from scratch", i.e., you may use the basic Flask libraries, templating abilities, etc, but you may not use 3rd party libraries to provide significant portions of functionality such as user logins.
+# Purrfect Shop
 
-> This is an **INDIVIDUAL** project. You may not share code with other students!
+A full-stack e-commerce web app for cat supplies, built with Python Flask and SQLite.
 
+---
 
-# Mena Hailemariam
+## Overview
 
-## Application Requirements
-The website should be able to display products being sold in several categories. A user visiting your web store can search for products (i.e., search for a specific item name and display that item) or display all items in a certain category. The website should display the available quantity and price for each product.
+Purrfect Shop is a web store where users can browse cat products across multiple categories, search by name, manage a shopping cart, and place orders. It was built to practice full-stack web development with a relational database backend.
 
-Only a logged in user can add products to a shopping cart and then checkout to complete a purchase and buy the products. To "buy" a product means to reduce the quantity from that product with the quantity that was "bought" (i.e. your database should be updated to reflect the reduction in quantity of items after checkout, not when added to the cart). 
+## Features
 
-A logged in user's shopping cart can be viewed, edited, checked out or deleted. A logged in user can also see her order history which should include the list of items purchased and total cost of the order.
+- Browse 20+ products across 4 categories: Furniture, Food Appliances, Toys, and Travel
+- Search for products by name
+- User registration and login
+- Session-based shopping cart — add, remove, or clear items
+- Checkout flow that updates inventory in the database
+- Order history for logged-in users
+- Out-of-stock indicators; prevents buying more than available inventory
 
-## Implementation
-- Python Flask will be used for all the server side scripting.
-- The cart should be implemented with Session variables. Hint: the session should be based on the user login.
-  - This means the shopping cart should *not* be stored in your database.
-- Check user input: do not allow me to buy -2 boxes of detergent or, 100 boxes if you only have 1 in stock.
-- Keep minimum information about customers: username and password, first and last name. We are not interested in addresses at this point.
-- Where details are not specified in the assignment, you should assume something "reasonable" that you think the client will expect. You should record any design decisions or assumptions you made in your `Readme.md`.
+## Tech Stack
 
+- **Backend:** Python, Flask
+- **Database:** SQLite
+- **Frontend:** HTML, CSS (Jinja2 templating)
 
-## Grading levels
-You have to complete most of the requirements for a level before you qualify for the next one.
+## Getting Started
 
-### Bare Minimum earns you 50%
-- [x] The user can see all the products the store sells; minimum of 10 products.
-- [x] The user can see all the products in a specific category; minimum of 3 categories.
-- [x] Database schema and scripts to create and populate the tables.
-  - [x] This must be kept in the `store_schema.sql` file.
-- [x] Minimal web interface: web page does not look professional, minimal styling, no form checks.
+### Prerequisites
 
+- Python 3.x
+- Flask (`pip install flask`)
 
-### Base level takes you to 85% 
-- [x] The user can search for a specific item by name.
-- [x] The user can login, but not create a new account.
-  - [x] Users who are not in the DB can't login.
-  - [x] Must include a sample user named `testuser` with password `testpass`
-- [x] The logged in user can view, add to, edit, check out or delete their cart.
-  - [x] The cart should be stored as a session variable.
-- [x] The database is updated when a user checks out.
-- [x] The store doesn't let a user buy negative amounts or more than is in the inventory.
+### Setup
 
-### Medium level takes you to 95%
-- [x] A new user can sign up.
-- [ ] A logged in user can see his/her previous order history.
-- [x] The front end is user friendly: website is easy and intuitive to navigate, no server error messages are presented to to user (if an error occurs, give a user friendly message).
-- [x] Website style: products have pictures.
+1. Clone the repo
+2. Initialize the database:
+   ```bash
+   sqlite3 myDatabase.db < store_schema.sql
+   ```
+3. Run the app:
+   ```bash
+   python main.py
+   ```
+4. Visit `http://localhost:8080`
 
-### Prime level takes you to 100%
-- [ ] Implement client-side validation for input forms (e.g. quantity added to cart can't be negative) using Javascript.
-- [ ] The logged in user can sort its orders by date.
-- [ ] The logged in user can search for a product in his/her past orders.
-- [ ] Website inspires a professional look: has logo, product descriptions, etc.
+## Project Structure
 
-## Submission
-To submit your work you must carefully do the following:
-  - Fill in your personal info at the top of `Readme.md`
-  - Check off (i.e., fill in a `- [X]`) every task you fully completed in the Grading Levels listed above
-  - Make sure to commit and push your changes here!
+```
+shopping-cart/
+├── main.py              # Flask routes and app logic
+├── store_schema.sql     # Database schema and seed data
+├── myDatabase.db        # SQLite database
+├── templates/           # Jinja2 HTML templates
+└── static/
+    └── assets/          # Product images and stylesheets
+```
+
+## What I Want to Fix / Add
+
+### Bugs (yes I know)
+- [ ] The cart is a global list right now which means it's technically shared across all users... will fix that
+- [ ] There's an indentation bug in checkout so only the last item in the cart actually gets its stock updated
+- [ ] Order history disappears on server restart because it's stored in a variable instead of the database
+- [ ] Signup just stays on the form after you submit, it doesn't tell you anything went through
+- [ ] Search crashes if you try to visit the search page directly without submitting the form
+
+### Security Stuff
+- [ ] Passwords are stored as plain text rn — need to hash them with something like `werkzeug.security`
+- [ ] `app.secret_key` is literally just `"secret"` — should pull that from an environment variable
+- [ ] Cart, checkout, and history pages are accessible even if you're not logged in
+
+### Things I Want to Add
+- [ ] Let users pick a quantity when adding to cart instead of always adding 1
+- [ ] Actually save order history to the database with a timestamp
+- [ ] Let users sort and search through their past orders
+- [ ] Add some JS form validation so you can't type in a negative number or something
+- [ ] Give each product a description
+- [ ] Add a logo / make it look more like a real store
+
+### Cleanup
+- [ ] The DB connection code is copy-pasted in like every single route — should make a helper function
+- [ ] Add a `.gitignore` (accidentally committed `.DS_Store` files)
+- [ ] Add a `requirements.txt`

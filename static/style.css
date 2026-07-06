@@ -1,0 +1,310 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-size: 100%;
+    font-family: sans-serif;
+}
+
+header {
+    overflow: hidden;
+    background-color: #ffffff;
+}
+
+header a {
+    background-color: rgb(255, 255, 255);
+    float: left;
+    display: block;
+    color: #f7c5f7;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-size: 17px;
+}
+
+header a:hover {
+    color: #f7c5f7;
+}
+
+header input {
+    background-color: rgb(255, 255, 255);
+    padding: 6px;
+    margin-top: 8px;
+    font-size: 17px;
+    border: none;
+}
+
+header button {
+    float: inline-start;
+    padding: 6px 10px;
+    background: #ffffff;
+    font-size: 17px;
+    border: none;
+    cursor: pointer;
+}
+
+
+.search-container {
+    float: right;
+    font-size: 20px;
+    padding: 6px 6px;
+
+}
+
+.search-container button {
+    float: right;
+    font-size: 20px;
+    padding: 10px 10px;
+}
+
+#loginBtn {
+    float: right;
+
+}
+
+.join{
+    background-color: rgb(255, 255, 255);
+    float: right;
+    display: block;
+    color: #f7c5f7;
+    margin-top: 12px;
+    text-decoration: none;
+    font-size: 20px;
+    border: none;
+    cursor: pointer;
+
+}
+
+.username {
+    background-color: rgb(255, 255, 255);
+    float: right;
+    display: block;
+    color: #f7c5f7;
+    margin-top: 12px;
+    text-align: center;
+    text-decoration: none;
+    font-size: 20px;
+    border: none;
+    cursor: pointer;
+
+}
+
+.dropdown {
+    font-size: 17px;
+    float: right;
+    overflow: hidden;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+}
+
+.dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+    z-index: 10;
+}
+
+.start-page {
+    font-size: 100%;
+    padding: 20% 20%;
+    text-align: center;
+
+}
+
+.start-page button {
+    float: center;
+    padding: 6px 10px;
+    margin-top: 8px;
+    margin-right: 16px;
+    background: #f7c5f7;
+    font-size: 17px;
+    border: none;
+    cursor: pointer;
+
+}
+
+ul li {
+    float: left;
+    list-style: none;
+    text-align: center;
+}
+
+ul li a {
+    color: black;
+    text-align: center;
+    text-decoration: solid;
+    font-size: 20px;
+    padding: 14px;
+}
+
+ul li a:hover {
+    background-color: rgb(245, 224, 250);
+    color: black;
+}
+
+main {
+    float: left;
+    text-align: left;
+    padding: 15% 10%;
+}
+
+main h1 {
+    font-size: 100px;
+    width: 400px;
+}
+
+main p {
+    font-size: 20px;
+    padding: 5px 0;
+    width: 400px;
+}
+
+.main-img {
+
+    margin: 0 0 0 0;
+    padding-top: 25%;
+    padding-left: 20%;
+
+}
+
+div.gallery {
+    max-width: 300px;
+    margin: auto;
+    text-align: center;
+    display: inline-block;
+    width: 30%;
+    height: 20px;
+}
+
+div.gallery img {
+    width: 100%;
+    padding: 20px;
+
+}
+
+div.desc {
+    width: 100%;
+    padding: 10px;
+    text-align: center;
+}
+
+button.add-button {
+    background-color: #fcc4fc;
+    color: black;
+    padding: 20px 10px;
+    margin: 1px 25%;
+    border: none;
+    cursor: pointer;
+    width: 50%;
+}
+
+button.disabled {
+    background-color: #a9a9a9;
+    color: black;
+    padding: 20px 10px;
+    margin: 1px 25%;
+    border: none;
+    cursor: pointer;
+    width: 50%;
+}
+
+button.checkout-btn {
+    float: inline-end;
+    background-color: #fcc4fc;
+    color: black;
+    padding: 20px 20px 20px 20px;
+    width: 25%;
+    border: none;
+}
+
+button.clear-btn {
+    float: inline-end;
+    background-color: #fcc4fc;
+    color: black;
+    padding: 20px 20px;
+    width: 25%;
+    border: none;
+}
+
+.box {
+    background-color: #f8dffa;
+    padding: 20px 20px 15px 25px;
+    border: 1px solid lightgrey;
+    border-radius: 3px;
+}
+
+.box h1 {
+    font-size: 30px;
+}
+
+.box p {
+    padding: 5px;
+    float: inline;
+
+}
+
+span.price {
+
+    color: rgb(0, 0, 0);
+}
+
+button.delete {
+    float: right;
+    background-color: #fcc4fc;
+    color: black;
+    padding: 5px 2px;
+    border: none;
+}
+
+hr {
+    border: 1px solid rgb(0, 0, 0);
+    margin: 20px 0;
+}
+
+.container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: sans-serif;
+
+    min-height: 1000px;
+    background: #f3f3f3;
+    flex-direction: column;
+    margin: 0;
+}
+
+.info-box {
+    background-color: #fff;
+    border-radius: 15px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+    padding: 100px 20px;
+    transition: transform 0.2s;
+    width: 500px;
+    text-align: center;
+}
+
+.info-box button {
+    background-color: #fcc4fc;
+    color: black;
+    border: none;
+    cursor: pointer;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    border-radius: 20px;
+    width: 20%;
+}
